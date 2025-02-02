@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Amada</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: white;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .slideshow {
+            width: 80%;
+            height: 400px;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .heart {
+            font-size: 50px;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        audio {
+            display: none;
+        }
+        .contador {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Para Você, Meu Amor ❤️</h1>
+        <p>Uma pequena surpresa para lembrar o quanto você é especial! Te amo tanto vida ❤️❤️</p>
+        <div class="slideshow">
+            <img src="img1.jpg" alt="Nosso momento 1">
+            <img src="img2.jpg" alt="Nosso momento 2">
+            <img src="img3.jpg" alt="Nosso momento 3">
+        </div>
+        <p class="heart">💖</p>
+        <p class="contador" id="contador"></p>
+    </div>
+    
+    <audio autoplay loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.slideshow').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 1500
+            });
+        });
+
+        function atualizarContador() {
+            const dataInicio = new Date('2024-10-29T00:00:00');
+            const agora = new Date();
+            
+            const diffTime = agora - dataInicio;
+            const dias = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            let horas = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutos = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+
+            if (horas < 0) horas += 24;
+
+            document.getElementById('contador').innerHTML = 
+                `Estamos juntos há <strong>${dias}</strong> dias, <strong>${horas}</strong> horas e <strong>${minutos}</strong> minutos.<br>
+                Cada segundo ao seu lado é uma nova página da nossa história de amor! 💖`;
+        }
+
+        setInterval(atualizarContador, 60000);
+        atualizarContador();
+    </script>
+</body>
+</html>
